@@ -7,7 +7,7 @@
 ## 一、拿到 B 上（三行）
 
 ```bash
-git clone https://github.com/<你的账号>/satnet3d-hil-demo.git ~/hil-demo
+git clone https://github.com/nowornever1111/satnet3d-hil-demo.git ~/hil-demo
 cd ~/hil-demo
 bash 安装到B.sh                       # 自动拷到 ~/omnetpp-6.3.0/workspace/satnet3d/simulations/education1
 ```
