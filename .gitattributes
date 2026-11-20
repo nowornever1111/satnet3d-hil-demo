@@ -1,0 +1,15 @@
+# 统一换行：脚本 LF，Windows 批处理 CRLF，压缩包当二进制
+* text=auto eol=lf
+
+*.sh        text eol=lf
+*.py        text eol=lf
+*.md        text eol=lf
+*.ned       text eol=lf
+*.ini       text eol=lf
+*.bat       text eol=crlf
+*.cmd       text eol=crlf
+*.txt       text eol=lf
+
+*.zip       binary
+*.gz        binary
+*.tgz       binary

@@ -1,0 +1,40 @@
+package satnet3d.app;
+
+import inet.common.SimpleModule;
+import inet.applications.contract.IApp;
+
+//
+// 半实物接入桥：把真实 UDP 套接字上的数据搬进仿真，把仿真收到的数据送回真实套接字。
+// 用于案例二（视频流半实物仿真），配合 --scheduler=inet::RealTimeScheduler 实时运行。
+//
+// realLocalPort     ：真实侧监听端口（绑 0.0.0.0）
+// simDestAddress    ：仿真侧目的地址（可为模块名，如 "videoClient"）
+// simDestPort       ：仿真侧目的 UDP 端口
+// simLocalPort      ：仿真侧本地端口（-1 表示自动）
+// realDestAddress   ：仿真收到的数据发往的真实 IPv4 地址（空表示只收不发）
+// realDestPort      ：真实侧目的端口
+// pollInterval      ：真实套接字轮询周期，需小于视频帧间隔
+//
+simple ExternalUdpBridge extends SimpleModule like IApp
+{
+    parameters:
+        @class(satnet3d::ExternalUdpBridge);
+        int realLocalPort = default(5000);
+        // 真实侧监听地址；留空为 0.0.0.0。建议指定具体地址，避免与真实接收端争用端口
+        string realLocalAddress = default("");
+        string realDestAddress = default("");
+        int realDestPort = default(0);
+        string simDestAddress = default("");
+        int simDestPort = default(5000);
+        int simLocalPort = default(-1);
+        double pollInterval @unit(s) = default(1ms);
+        @display("i=block/app");
+        @lifecycleSupport;
+        double stopOperationExtraTime @unit(s) = default(-1s);
+        double stopOperationTimeout @unit(s) = default(2s);
+        @signal[packetSent](type=inet::Packet);
+        @signal[packetReceived](type=inet::Packet);
+    gates:
+        input socketIn @labels(UdpCommand/up);
+        output socketOut @labels(UdpCommand/down);
+}

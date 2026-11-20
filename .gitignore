@@ -1,0 +1,13 @@
+# 仿真跑出来的中间产物
+results/
+**/results/
+__pycache__/
+*.pyc
+*.vci
+*.vec
+*.sca
+*.elog
+
+# 系统垃圾
+.DS_Store
+Thumbs.db

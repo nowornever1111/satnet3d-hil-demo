@@ -1,0 +1,13 @@
+#!/bin/sh
+# 案例二教学仿真启动脚本
+# 用法：
+#   sh ./run -u Cmdenv          # 命令行批量运行，结果写入 results/
+#   sh ./run -u Qtenv           # 图形界面，可看三维星座
+#   sh ./run -u Cmdenv --sim-time-limit=60s
+#
+# 注意：运行前需先加载 OMNeT++ 环境
+#   cd ~/omnetpp-6.3.0 && source setenv
+
+cd `dirname $0`
+opp_run -l ../../src/libsatnet3d.so -l ../../../inet4.6/src/libINET.so \
+        -n ../../src:..:../../../inet4.6/src $*
