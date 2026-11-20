@@ -102,3 +102,19 @@ python 04-代码/本机工具/_mk_packages.py
 ```
 
 会重打 B 整包与 A/C 两个 zip；本仓库的 `education1/` 直接从 B 包里解出来即可。
+
+---
+
+## 七、改完怎么推回 GitHub
+
+双击 **`同步并推送.bat`**：把 `04-代码/仿真模型/education1` 同步进来、提交、推送，一步到底。
+
+想自己敲：
+
+```bash
+git add -A
+git commit -m "改了什么"
+git push
+```
+
+详细说明（`--dry-run`、`--no-push`、代理报错、回滚、给 B 更新）见 [日常更新流程.md](日常更新流程.md)。
